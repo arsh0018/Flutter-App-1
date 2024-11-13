@@ -11,7 +11,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Layout Demo',
-      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Doto'),
+      theme: ThemeData(primarySwatch: Colors.pink, fontFamily: 'Doto'),
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Basic Layout'),
@@ -20,7 +20,16 @@ class MainApp extends StatelessWidget {
           children: [
             SizedBox(
               height: 400,
-              child: HorizontalScroller(),
+              child: ListView.builder(
+                itemCount: 3,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.network('https://placehold.co/600x400@2x.png',
+                        width: 200, height: 200),
+                  );
+                },
+              ),
             ),
             const SizedBox(
               height: 20,
@@ -49,20 +58,6 @@ class MainApp extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  ListView HorizontalScroller() {
-    return ListView.builder(
-      itemCount: 3,
-      scrollDirection: Axis.horizontal,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Image.network('https://placehold.co/600x400@2x.png',
-              width: 200, height: 200),
-        );
-      },
     );
   }
 }
